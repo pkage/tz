@@ -1,0 +1,15 @@
+{
+    "background_color": "#000000",
+    "description": "ksuite timezones",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "name": "timezones",
+    "short_name": "tz",
+    "start_url": "/"
+}

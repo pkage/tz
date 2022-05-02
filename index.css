@@ -1,0 +1,58 @@
+:root {
+    --bg: #000000ff; /* black */
+    --fg: #ebf5eeff; /* mint cream */
+    --a1: #00a878ff; /* green munsell */
+    --a2: #ff3f00ff; /* red orange color wheel */
+    --a3: #92140cff; /* dark red */
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--fg);
+
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 100vh;
+}
+
+@media (max-width: 768px) {
+    main {
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-columns: 1fr;
+
+        min-height: fill-available;
+    }
+}
+
+.tz_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tz_block__time {
+    font-size: 4em;
+    font-weight: 300;
+}
+
+.tz_block__real_time {
+    cursor: pointer;
+    color: var(--a1);
+}
+
+
+
