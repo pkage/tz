@@ -8,13 +8,15 @@ class TimeController {
     constructor() {
         this.times = [...document.querySelectorAll('[data-track]')]
 
+        this.keep_in_sync = true
+
         // do something horrendous
         // 10px = 1 minute
         document.body.style.height = `${(25 * 60 * MINUTE_TO_PIXEL_SCALING)}px`
 
         let mins_since_midnight = this.get_mins_since_midnight()
-
         document.body.parentElement.scrollTop = mins_since_midnight * MINUTE_TO_PIXEL_SCALING
+
         console.log(`mins since midnight: ${mins_since_midnight}`)
 
 
@@ -41,13 +43,16 @@ class TimeController {
     }
 
     event_scroll() {
+        this.keep_in_sync = false
         this.update_all_times()
     }
 
     reset_scroll() {
-        const correct_scroll = this.get_mins_since_midnight() * MINUTE_TO_PIXEL_SCALING
+        this.keep_in_sync = true
 
+        const correct_scroll = this.get_mins_since_midnight() * MINUTE_TO_PIXEL_SCALING
         document.body.parentElement.scrollTop = correct_scroll
+
         this.offset = 0
 
         this.update_all_times()
@@ -64,11 +69,19 @@ class TimeController {
     }
 
     update_all_times() {
+        if (this.keep_in_sync) {
+            this.offset = 0
+            const correct_scroll = this.get_mins_since_midnight() * MINUTE_TO_PIXEL_SCALING
+            document.body.parentElement.scrollTop = correct_scroll
+        }
+
         this.offset = this.convert_scroll_to_offset()
-        console.log(this.offset)
+
+
         for (let elem of this.times) {
             this.update_time(elem)
         }
+
 
     }
 
